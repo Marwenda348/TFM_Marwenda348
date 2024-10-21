@@ -1,11 +1,7 @@
+#Importamos archivo de Comprobación
 import Comprobar as wl
 
-
+#Solicitamos dominio y lo validamos.
 print("Intruduzca el Dominio a escanear")
 DominioInput = input()
-Domain=wl.whitelist(DominioInput)
-
-if Domain :
-    print("Se ha registrado su Dominio")
-else:
-    print("Introduzca un valor valido")  
+wl.DominioValido(DominioInput)
