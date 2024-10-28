@@ -13,11 +13,15 @@ def whitelist(self):
     #Si llegamos aqui quiere decir que todas las letras estan en el whitelist
     #por lo que podemos devolver el texto como vino
     if Whitelist:
-        return self
+        dominio_regex = re.compile(r"^(?!-)[A-Za-z0-9-]{1,63}(?<!-)\.[A-Za-z]{2,6}$")
+        ip_regex = re.compile(r"^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$")
+        if (dominio_regex.match(self)) or (ip_regex.match(self)) :
+            print("Dominio o IP valida con formato correcto")
+            return self 
     
 def DominioValido(self):
     Domain=whitelist(self)
     if Domain :
-        print("Se ha registrado su Dominio")
+        return 1
     else:
-        print("Introduzca un valor valido")  
+        return 0  
