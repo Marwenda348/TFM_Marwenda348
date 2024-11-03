@@ -5,7 +5,7 @@ import IaConnection as Ia
 print("Intruduzca el Dominio a escanear")
 DominioInput = input()
 
-if (wl.DominioValido(DominioInput)>= 1):
+if (wl.DominioValido(DominioInput) >= 1):
     Ia.Preguntar(DominioInput)
     
 else:
