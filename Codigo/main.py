@@ -4,10 +4,13 @@ import IaConnection as Ia
 import sniffer as Sn
 #Solicitamos dominio y lo validamos.
 print("Intruduzca el Dominio a escanear")
-DominioInput = input()
+Input= input()
+DominioInput = Input
+Whitelist = wl.DominioValido(DominioInput)
+Ialist = Ia.Preguntar(DominioInput)
 
-if (wl.DominioValido(DominioInput) >= 1):
-    Ia.Preguntar(DominioInput)
+if ( Whitelist >= 1 and Ialist == "Si"):
+    #Ia.Preguntar(DominioInput)
     Sn.whois(DominioInput)
 else:
     print ("No es un dominio Valido")    
