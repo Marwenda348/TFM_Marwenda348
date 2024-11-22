@@ -1,7 +1,7 @@
 #Importamos archivo de Comprobación
 import Comprobar as wl
 import IaConnection as Ia
-import sniffer as Sn
+import Whois as Sn
 #Solicitamos dominio y lo validamos.
 print("Intruduzca el Dominio a escanear")
 Input= input()
