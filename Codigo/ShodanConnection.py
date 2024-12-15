@@ -27,10 +27,10 @@ def Buscar(IP):
             "Puertos vuln" : Puertos,
             "Vulnerabilidades" : Vulns
         }
-        print(Insertar)
-    #mdb.Añadir(Ip,Insertar)
-    #mdb.Listartodo(Ip)
-    #print (Ip)
+       
+        mdb.Añadir(Ip,Insertar)
+        print("Buscando en la Base de datos los datos relativos a la IP:" + Ip)
+        mdb.Listartodo(Ip)
 #Si no funciona la conexión saltará el error
     except shodan.APIError as e:
         print('Error: {}'.format(e))

@@ -8,12 +8,11 @@ print("Intruduzca el Dominio a escanear")
 Input= input()
 DominioInput = Input
 Whitelist = wl.DominioValido(DominioInput)
-Ialist = Ia.Preguntar(DominioInput)
-Sd.Buscar(DominioInput)
-#if ( Whitelist >= 1 and Ialist == "Si"):
+Ialist = Ia.Preguntar(DominioInput) 
+if ( Whitelist >= 1 and Ialist == "Sí." ):
     #Ia.Preguntar(DominioInput)
     #Sn.whois(DominioInput)
     #Sn.Nslookup(DominioInput)
-    
-#else:
-#    print ("No es un dominio Valido")    
+    Sd.Buscar(DominioInput)
+else:
+    print ("No es un dominio Valido")    

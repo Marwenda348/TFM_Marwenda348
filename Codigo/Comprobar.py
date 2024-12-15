@@ -6,9 +6,10 @@ def whitelist(self):
 #Reccoremos el String introducido
     for i in self:
         #Comprobamos letra a letra que esta en la Whitelist
-        Whitelist = re.search(r"[a-zA-Z0-9./]",i)
+        Whitelist = re.fullmatch(r"[a-zA-Z0-9./]",i)
         #Si no lo esta se devuelve None
         if not Whitelist:
+            print("No es valida")
             return None
     #Si llegamos aqui quiere decir que todas las letras estan en el whitelist
     #por lo que podemos devolver el texto como vino
@@ -18,7 +19,6 @@ def whitelist(self):
         #Utilizamos regex también para valorar que es una IP valida
         ip_regex = re.compile(r"^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$")
         if (dominio_regex.match(self)) or (ip_regex.match(self)) :
-            print("Dominio o IP valida con formato correcto")
             return self 
     
 def DominioValido(self):
