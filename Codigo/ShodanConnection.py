@@ -12,7 +12,6 @@ def Buscar(IP):
     try:    
         #Buscamos por la IP
         ipinfo = api.host(str(IP))
-
         Ip=ipinfo.get("ip_str")
         Hostname=ipinfo.get("hostnames")
         Dominio=ipinfo.get("domains")
@@ -27,10 +26,30 @@ def Buscar(IP):
             "Puertos vuln" : Puertos,
             "Vulnerabilidades" : Vulns
         }
-       
-        mdb.Añadir(Ip,Insertar)
-        print("Buscando en la Base de datos los datos relativos a la IP:" + Ip)
-        mdb.Listartodo(Ip)
+        return Insertar
+      #  mdb.Añadir(Ip,Insertar)
+      #  print("Buscando en la Base de datos los datos relativos a la IP:" + Ip)
+      #  mdb.Listartodo(Ip)
 #Si no funciona la conexión saltará el error
     except shodan.APIError as e:
         print('Error: {}'.format(e))
+
+def DNS(Domain):    
+    
+    result = api.search(Domain)
+    dns=[{}]
+    for match in result['matches']:
+        Ip=match['ip_str']
+        Hostname=match['hostnames'],
+        Dominio=match['domains']
+        Puertos=match['port']
+        Vulns=match('vulns')
+
+        dns.append({
+            "Dominio": Dominio,
+            "Ip" : Ip, 
+            "Hostname": Hostname,
+            "Puertos vuln" : Puertos,
+            "Vulnerabilidades" : Vulns})
+    return dns
+    
