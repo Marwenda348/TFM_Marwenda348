@@ -2,7 +2,7 @@ import shodan
 #Importamos la libreria de Shodan y nuestro archivo Componentes donde tenemos la APIkey
 from Componentes import ApiShodan
 import Mongo as mdb
-
+import IaConnection as Ia
 #Rescatamos la APIkey de Shodan
 api = shodan.Shodan(ApiShodan)
 
@@ -26,16 +26,21 @@ def Buscar(IP):
             "Puertos vuln" : Puertos,
             "Vulnerabilidades" : Vulns
         }
+        if(Vulns):
+            with open("Informe Técnico "+Ip+".txt", "w") as archivo:
+                for vulner in Vulns:
+                    archivo.write(Ia.Cve(vulner)+"\n\n------------------\n\n")
         return Insertar
-      #  mdb.Añadir(Ip,Insertar)
-      #  print("Buscando en la Base de datos los datos relativos a la IP:" + Ip)
+        mdb.Añadir(Ip,Insertar)
+        #print("Buscando en la Base de datos los datos relativos a la IP:" + Ip)
       #  mdb.Listartodo(Ip)
-#Si no funciona la conexión saltará el error
+#Si no funciona la conexión saltará el error   
     except shodan.APIError as e:
         print('Error: {}'.format(e))
 
+
+
 def DNS(Domain):    
-    
     result = api.search(Domain)
     dns=[{}]
     for match in result['matches']:

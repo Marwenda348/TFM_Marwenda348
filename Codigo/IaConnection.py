@@ -32,6 +32,19 @@ try:
         )
         Respuesta=completion.choices[0].message.content
         return Respuesta
+    def Cve(CVES):
+        completion = client.chat.completions.create(
+            model="gpt-3.5-turbo", #indicamos que modelo de Chat queremos
+            max_tokens=300, #Numero de caracteres en la respuesta
+            messages=[#Parametros
+                {"role": "user", "content": "Para ayudar al tecnico de seguridad que se encarga de esta auditoria "+ 
+                 "necesito que me analices la siguiente CVE, Necesito que sigas el siguiente patron, Que CVE tiene la vulnerabilidad, salto de linea,  Explicacion: "+
+                 "aqui la explicacion del CVE, salto de linea,Solucion: aqui como lo solucionarias "+CVES }
+            ]
+
+        )
+        Respuesta=completion.choices[0].message.content
+        return Respuesta
 #Manejamos los errores de Conexion        
 except OpenAIError as e:
      print('Error: {}'.format(e))
