@@ -1,6 +1,6 @@
 from pymongo import MongoClient
 from Componentes import Usermdb, Passmdb
-
+import json
 
 #Conectamos a la Base de datos con los valores importados de Componentes
 uri = "mongodb://" + Usermdb + ":" + Passmdb + "@localhost:27017/test?authSource=admin"
@@ -21,6 +21,15 @@ def Añadir(Nombre,Texto):
     except Exception as e:
         print(f"Error al insertar los documentos: {e}")
 
+def json(Ip,jsonarc):
+    coleccion = db[str(Ip)]
+    with open(jsonarc+".json", "r") as archivo:
+        datos_json = json.load(archivo)
+    if isinstance(datos_json, list):
+        coleccion.insert_many(datos_json)
+    else:
+        coleccion.insert_one(datos_json)
+        
 def Listartodo(Nombre):
     coleccion = db[str(Nombre)]
     Valor = coleccion.find()
@@ -28,5 +37,5 @@ def Listartodo(Nombre):
     for Unidad in Valor:
         print(Unidad)
 
-Listartodo("213.149.230.164")
+
 

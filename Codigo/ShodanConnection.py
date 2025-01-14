@@ -27,7 +27,7 @@ def Buscar(IP):
             "Vulnerabilidades" : Vulns
         }
         if(Vulns):
-            with open("Informe Técnico "+Ip+".txt", "w") as archivo:
+            with open(str(IP)+"/Informe Técnico "+Ip+".txt", "w") as archivo:
                 for vulner in Vulns:
                     archivo.write(Ia.Cve(vulner)+"\n\n------------------\n\n")
         return Insertar

@@ -15,21 +15,19 @@ def whois(Dominio):
     try:
         resultado = subprocess.run(["whois", Dominio], check=True, capture_output=True, text=True) 
         revisar= parsear(resultado.stdout)
-        with open("Whois.json", "w") as file:
-           json.dump(revisar, file, indent=4)
-        return revisar    
-        
+        with open(str(Dominio)+"/Whois.json", "w") as file:
+            json.dump(revisar, file, indent=4)  
     except subprocess.CalledProcessError as e:
         print("Error al ejecutar el comando:", e)
         
+
+
+
 def Nslookup(Dominio):
     try:
         resultado = subprocess.run(["nslookup", Dominio], check=True, capture_output=True, text=True) 
         revisar= parsear(resultado.stdout)
-        with open("Nslookup.json", "w") as file:
-            json.dump(revisar, file, indent=4)
-        return revisar    
-            
+        with open(str(Dominio)+"/Nslookup.json", "w") as file:
+            json.dump(revisar, file, indent=4)    
     except subprocess.CalledProcessError as e:
         print("Error al ejecutar el comando:", e)    
-whois("213.149.230.164")
