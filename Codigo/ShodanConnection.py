@@ -27,11 +27,13 @@ def Buscar(IP):
             "Vulnerabilidades" : Vulns
         }
         if(Vulns):
-            with open(str(IP)+"/Informe Técnico "+Ip+".txt", "w") as archivo:
+            with open(str(IP)+"/Informe Técnico "+str(IP)+".txt", "w") as archivo:
                 for vulner in Vulns:
                     archivo.write(Ia.Cve(vulner)+"\n\n------------------\n\n")
+                    mdb.Añadir(str(IP),Insertar)
         return Insertar
-        mdb.Añadir(Ip,Insertar)
+        
+        
         #print("Buscando en la Base de datos los datos relativos a la IP:" + Ip)
       #  mdb.Listartodo(Ip)
 #Si no funciona la conexión saltará el error   
